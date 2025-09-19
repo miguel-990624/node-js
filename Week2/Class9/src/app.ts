@@ -1,9 +1,8 @@
 import "dotenv/config"
-import express from "express"
+import express from 'express';
 import apiRoutes from './routes/apiRoutes.ts';
-import cors from "cors"
+import cors from "cors";
 import './cron/dailyTask.ts'
-
 
 const PORT = process.env.PORT || 3002
 const app = express();

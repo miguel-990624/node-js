@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export async function getRandomTrivia(): Promise<string> {
+export async function getRandomTrivia(num:string = "random"): Promise<string> {
   try {
-    const { data } = await axios.get('http://numbersapi.com/random/trivia', {
+    const { data } = await axios.get(`http://numbersapi.com/${num}/trivia?notfound=floor`, {
       responseType: 'text',
     });
     return data;

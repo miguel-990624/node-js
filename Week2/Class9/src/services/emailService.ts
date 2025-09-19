@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import "dotenv/config"
 
-export async function sendSummaryEmail(fact: string) {
+export async function sendSummaryEmail(htmlContent: string, recipients: string) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -9,12 +9,12 @@ export async function sendSummaryEmail(fact: string) {
       pass: process.env.EMAIL_PASS,
     },
   });
-
+  
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_TO,
+    to: recipients,
     subject: 'Trivia numérica del día',
-    html: `<h2>Trivia aleatoria</h2><p>${fact}</p>`,
+    html: htmlContent,
   };
 
   try {
