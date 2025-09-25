@@ -10,6 +10,7 @@ import { router as reviewsRouter } from "./routes/reviews.js";
 import { router as subscriptionsRouter } from "./routes/subscriptions.js";
 import { router as usersRouter } from "./routes/users.js";
 import logger from "./middlewares/logger.js";
+import "./jobs/minuteDue.job.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
