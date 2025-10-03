@@ -23,7 +23,7 @@ interface PlanAttributes {
   updated_at?: Date;
 };
 
-type PlanCreation = Optional<PlanAttributes, "id" | "created_at" | "updated_at">;
+export type PlanCreation = Optional<PlanAttributes, "id" | "created_at" | "updated_at">;
 
 export class Plan extends Model<PlanAttributes, PlanCreation>
   implements PlanAttributes {

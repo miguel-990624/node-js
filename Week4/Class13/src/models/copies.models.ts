@@ -1,5 +1,5 @@
 import { DataTypes, Model, type Optional } from "sequelize";
-import { sequelize } from "../db/index.js";
+import { sequelize } from "../db/index.ts";
 
 interface BookCopyAttributes {
   id: number;
@@ -8,7 +8,7 @@ interface BookCopyAttributes {
   availability_status: boolean;
 }
 
-type BookCopyCreation = Optional<BookCopyAttributes, "id">;
+export type BookCopyCreation = Optional<BookCopyAttributes, "id">;
 
 export class BookCopy extends Model<BookCopyAttributes, BookCopyCreation>
   implements BookCopyAttributes {

@@ -1,4 +1,4 @@
-import { promises as fs } from "fs";
+/*import { promises as fs } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { type IPlan } from "../interfaces/plans.interface.ts";
@@ -47,3 +47,32 @@ const deletePlansService = async (id:number): Promise<boolean> => {
 };
 
 export { getPlansService, getPlansByIDService, postPlansService, putPlansService, deletePlansService };
+*/
+
+import { Plan } from "../models/plans.models.ts";
+import type { PlanCreation } from "../models/notifications.models.ts";
+
+const getNotificationsService = async () => {
+  return Plan.findAll();
+};
+
+const getNotificationsByIDService = async (id: number) => {
+  return Plan.findByPk(id);
+};
+
+const postNotificationsService = async (newNotification: PlanCreation) => {
+  return Plan.create(newNotification);
+};
+
+const putNotificationsService = async (id: number, updatedBook: Partial<PlanCreation>) => {
+  const book = await Plan.findByPk(id);
+  if (!book) return null;
+  return book.update(updatedBook);
+};
+
+const deleteNotificationsService = async (id: number) => {
+  const deleted = await Plan.destroy({ where: { id } });
+  return deleted > 0;
+};
+
+export { getNotificationsService, getNotificationsByIDService, postNotificationsService, putNotificationsService, deleteNotificationsService };

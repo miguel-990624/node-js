@@ -1,5 +1,5 @@
 import { DataTypes, Model, type Optional } from "sequelize";
-import { sequelize } from "../db/index.js";
+import { sequelize } from "../db/index.ts";
 
 interface BookAttributes {
   id: number;

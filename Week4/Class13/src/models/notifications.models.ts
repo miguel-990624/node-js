@@ -1,5 +1,5 @@
 import { DataTypes, Model, type Optional } from "sequelize";
-import { sequelize } from "../db/index.js";
+import { sequelize } from "../db/index.ts";
 
 interface NotificationAttributes {
   id: number;
@@ -10,7 +10,7 @@ interface NotificationAttributes {
   created_at?: Date;
 }
 
-type NotificationCreation = Optional<NotificationAttributes, "id" | "read" | "created_at">;
+export type NotificationCreation = Optional<NotificationAttributes, "id" | "read" | "created_at">;
 
 export class Notification extends Model<NotificationAttributes, NotificationCreation>
   implements NotificationAttributes {

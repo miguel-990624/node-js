@@ -11,6 +11,7 @@ import { router as subscriptionsRouter } from "./routes/subscriptions.ts";
 import { router as usersRouter } from "./routes/users.ts";
 import logger from "./middlewares/logger.ts";
 import "./jobs/minuteDue.job.ts";
+import { initDB } from "./db/index.ts";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,6 +32,14 @@ app.use("/reviews", reviewsRouter);
 app.use("/subscriptions", subscriptionsRouter);
 app.use("/users", usersRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+(async () => {
+    try {
+        initDB();
+        app.listen(PORT, () => {
+        console.log(`🚀 Servidor iniciado en http://localhost:${PORT}`);
+    });
+        console.log("Conectado a PostgreSQL database")
+    } catch (error) {
+        console.log('Error al conectar')
+    }
+})();

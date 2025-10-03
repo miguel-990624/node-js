@@ -1,4 +1,4 @@
-import { type ILoan } from "../interfaces/loans.interface.ts";
+/*import { type ILoan } from "../interfaces/loans.interface.ts";
 import { promises as fs } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
@@ -44,6 +44,34 @@ const deleteLoansService = async (id:number): Promise<boolean> => {
     loans.splice(index, 1);
     await fs.writeFile(filepath, JSON.stringify(loans, null, 4), "utf-8");
     return true;
+};
+
+export { getLoansService, getLoansByIDService, postLoansService, putLoansService, deleteLoansService };*/
+
+import { Loan } from "../models/index.models.ts";
+import type { LoanCreation } from "../models/loans.models.ts";
+
+const getLoansService = async () => {
+  return Loan.findAll();
+};
+
+const getLoansByIDService = async (id: number) => {
+  return Loan.findByPk(id);
+};
+
+const postLoansService = async (newLoan: LoanCreation) => {
+  return Loan.create(newLoan);
+};
+
+const putLoansService = async (id: number, updatedBook: Partial<LoanCreation>) => {
+  const book = await Loan.findByPk(id);
+  if (!book) return null;
+  return book.update(updatedBook);
+};
+
+const deleteLoansService = async (id: number) => {
+  const deleted = await Loan.destroy({ where: { id } });
+  return deleted > 0;
 };
 
 export { getLoansService, getLoansByIDService, postLoansService, putLoansService, deleteLoansService };

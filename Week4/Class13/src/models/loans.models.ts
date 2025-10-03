@@ -17,7 +17,7 @@
 );*/
 
 import { DataTypes, Model, type Optional } from "sequelize";
-import { sequelize } from "../db/index.js";
+import { sequelize } from "../db/index.ts";
 
 interface LoanAttributes {
   id: number;
@@ -32,7 +32,7 @@ interface LoanAttributes {
   updated_at?: Date;
 };
 
-type LoanCreation = Optional<LoanAttributes, "id" | "loan_date" | "actual_return_date" | "created_at" | "updated_at">;
+export type LoanCreation = Optional<LoanAttributes, "id" | "loan_date" | "actual_return_date" | "created_at" | "updated_at">;
 
 export class Loan extends Model<LoanAttributes, LoanCreation>
   implements LoanAttributes {
